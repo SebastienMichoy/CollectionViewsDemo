@@ -1,0 +1,115 @@
+//
+//  MenuViewController.swift
+//
+//  Copyright © 2015 Sébastien MICHOY and contributors.
+//
+//  Redistribution and use in source and binary forms, with or without
+//  modification, are permitted provided that the following conditions are met:
+//
+//  Redistributions of source code must retain the above copyright notice, this
+//  list of conditions and the following disclaimer. Redistributions in binary
+//  form must reproduce the above copyright notice, this list of conditions and
+//  the following disclaimer in the documentation and/or other materials
+//  provided with the distribution. Neither the name of the nor the names of
+//  its contributors may be used to endorse or promote products derived from
+//  this software without specific prior written permission.
+//
+//  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+//  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+//  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+//  ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+//  LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+//  CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+//  SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+//  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+//  CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+//  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+//  POSSIBILITY OF SUCH DAMAGE.
+
+import UIKit
+
+class MenuViewController: UIViewController, UISplitViewControllerDelegate, UITableViewDataSource, UITableViewDelegate {
+    
+    // MARK: - Properties
+    private var collapseDetailViewController: Bool
+    private var lastIndexPathSelected: NSIndexPath
+    private let menuItems: [MenuItem]
+    @IBOutlet private weak var tableView: UITableView!
+    
+    // MARK: - Methods
+    // MARK: Init/deinit
+    required init(coder aDecoder: NSCoder) {
+        self.collapseDetailViewController = true
+        self.lastIndexPathSelected = NSIndexPath(forRow: 0, inSection: 0)
+        self.menuItems = MenuManager.menuItemsList()
+        
+        super.init(coder: aDecoder)
+    }
+    
+    // MARK: View life cycle
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if deviceType() == .Pad || (deviceModel() == .iPhone6Plus && (deviceOrientation() == .LandscapeLeft || deviceOrientation() == .LandscapeRight))  {
+            self.tableView.selectRowAtIndexPath(self.lastIndexPathSelected, animated: false, scrollPosition: .Top)
+        } else {
+            self.tableView.deselectRowAtIndexPath(self.lastIndexPathSelected, animated: true)
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.splitViewController?.delegate = self
+    }
+    
+    // MARK: Rotation
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        if deviceModel() == .iPhone6Plus && (deviceOrientation() == .LandscapeLeft || deviceOrientation() == .LandscapeRight) {
+            self.tableView.selectRowAtIndexPath(self.lastIndexPathSelected, animated: false, scrollPosition: .Top)
+        }
+    }
+    
+    // MARK: UISplitViewControllerDelegate protocol
+    func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController: UIViewController!, ontoPrimaryViewController primaryViewController: UIViewController!) -> Bool {
+        return self.collapseDetailViewController
+    }
+    
+    // MARK: UITableViewDataSource protocol
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! UITableViewCell
+        let menuItem = self.menuItems[indexPath.row]
+        
+        cell.textLabel?.text = menuItem.title
+        cell.detailTextLabel?.text = menuItem.subtitle
+        cell.selectionStyle = .Default
+        
+        if deviceType() == .Phone {
+            cell.accessoryType = .DisclosureIndicator
+        }
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.menuItems.count
+    }
+    
+    // MARK: UITableViewDelegate protocol
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let menuItem = self.menuItems[indexPath.row]
+        let storyboard = UIStoryboard(name: "CollectionViewsDemo", bundle: nil)
+        let viewController = storyboard.instantiateViewControllerWithIdentifier(menuItem.storyboardId) as! UIViewController
+        let navigationController = UINavigationController(rootViewController: viewController)
+        
+        if let splitViewController = self.splitViewController {
+            self.collapseDetailViewController = false
+            self.lastIndexPathSelected = indexPath
+            
+            viewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
+            viewController.navigationItem.leftItemsSupplementBackButton = true
+            
+            splitViewController.showDetailViewController(navigationController, sender: self)
+        }
+    }
+}
