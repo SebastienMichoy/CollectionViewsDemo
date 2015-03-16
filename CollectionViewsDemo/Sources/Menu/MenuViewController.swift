@@ -65,9 +65,19 @@ class MenuViewController: UIViewController, UISplitViewControllerDelegate, UITab
     
     // MARK: Rotation
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        if deviceModel() == .iPhone6Plus && (deviceOrientation() == .LandscapeLeft || deviceOrientation() == .LandscapeRight) {
-            self.tableView.selectRowAtIndexPath(self.lastIndexPathSelected, animated: false, scrollPosition: .Top)
+        
+        let animation = {(context: UIViewControllerTransitionCoordinatorContext!) -> Void in
+            if deviceModel() == .iPhone6Plus && (deviceOrientation() == .LandscapeLeft || deviceOrientation() == .LandscapeRight) {
+                self.tableView.selectRowAtIndexPath(self.lastIndexPathSelected, animated: false, scrollPosition: .Top)
+            }
         }
+        
+        let completion = {(context: UIViewControllerTransitionCoordinatorContext!) -> Void in
+        }
+        
+        coordinator .animateAlongsideTransition(animation, completion: completion)
+        
+        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
     }
     
     // MARK: UISplitViewControllerDelegate protocol
@@ -106,6 +116,7 @@ class MenuViewController: UIViewController, UISplitViewControllerDelegate, UITab
             self.collapseDetailViewController = false
             self.lastIndexPathSelected = indexPath
             
+            viewController.title = menuItem.title
             viewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
             viewController.navigationItem.leftItemsSupplementBackButton = true
             

@@ -1,5 +1,5 @@
 //
-//  BasicCollectionViewController.swift
+//  Basic01CollectionViewController.swift
 //
 //  Copyright © 2015 Sébastien MICHOY and contributors.
 //
@@ -28,7 +28,7 @@
 
 import UIKit
 
-class BasicCollectionViewController: UIViewController, UICollectionViewDataSource {
+class Basic01CollectionViewController: UIViewController, UICollectionViewDataSource {
 
     // MARK: - Properties
     @IBOutlet weak var collectionView: UICollectionView!
@@ -46,13 +46,7 @@ class BasicCollectionViewController: UIViewController, UICollectionViewDataSourc
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        let spacesWidth: CGFloat
-        
-        if deviceType() == .Phone {
-            spacesWidth = 2
-        } else {
-            spacesWidth = 10
-        }
+        let spacesWidth = deviceType() == .Phone ? 2 : 10 as CGFloat
         
         let collectionViewFlowLayout = UICollectionViewFlowLayout()
         collectionViewFlowLayout.minimumLineSpacing = spacesWidth
@@ -61,12 +55,6 @@ class BasicCollectionViewController: UIViewController, UICollectionViewDataSourc
         collectionViewFlowLayout.sectionInset = UIEdgeInsets(top: 10, left: spacesWidth, bottom: 5, right: spacesWidth)
         
         self.collectionView.collectionViewLayout = collectionViewFlowLayout
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.title = "Basic"
     }
     
     // MARK: UICollectionViewDataSource protocol

@@ -1,5 +1,5 @@
 //
-//  ApplicationIconNameCollectionViewCell.swift
+//  ApplicationDetailCollectionViewCell+ApplicationItem.swift
 //
 //  Copyright © 2015 Sébastien MICHOY and contributors.
 //
@@ -28,10 +28,25 @@
 
 import UIKit
 
-@IBDesignable
-class ApplicationIconNameCollectionViewCell: UICollectionViewCell {
+extension ApplicationDetailCollectionViewCell {
     
-    // MARK: - Properties
-    @IBOutlet weak var iconImageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
+    // MARK: - Methods
+    // MARK: Class method
+    class func standardHeightForApplicationItem() -> CGFloat {
+        let cellHeight = deviceType() == .Phone ? 60 + 16 : 72 + 16 as CGFloat
+        
+        return cellHeight
+    }
+    
+    // MARK: Fill cell
+    func fillWithApplicationItem(application: ApplicationItem) {
+        self.iconImageView.image = UIImage(named: application.imageName)
+        self.nameLabel.text = application.name
+        self.authorLabel.text = application.authorName
+        
+        if (deviceType() == .Phone) {
+            self.nameLabel.font = self.nameLabel.font.fontWithSize(10)
+            self.authorLabel.font = self.authorLabel.font.fontWithSize(10)
+        }
+    }
 }

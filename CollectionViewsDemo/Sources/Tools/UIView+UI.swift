@@ -1,5 +1,5 @@
 //
-//  ApplicationIconNameCollectionViewCell.swift
+//  UIView+UI.swift
 //
 //  Copyright © 2015 Sébastien MICHOY and contributors.
 //
@@ -28,10 +28,32 @@
 
 import UIKit
 
-@IBDesignable
-class ApplicationIconNameCollectionViewCell: UICollectionViewCell {
+extension UIView {
     
     // MARK: - Properties
-    @IBOutlet weak var iconImageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBInspectable var borderColor: UIColor? {
+        get {
+            return UIColor(CGColor: layer.borderColor)
+        }
+        set {
+            layer.borderColor = newValue?.CGColor
+        }
+    }
+    @IBInspectable var borderWidth: CGFloat {
+        get {
+            return layer.borderWidth
+        }
+        set {
+            layer.borderWidth = newValue
+        }
+    }
+    @IBInspectable var cornerRadius: CGFloat {
+        get {
+            return layer.cornerRadius
+        }
+        set {
+            layer.cornerRadius = newValue
+            layer.masksToBounds = newValue > 0
+        }
+    }
 }

@@ -1,5 +1,5 @@
 //
-//  Tools.swift
+//  DeviceInformation.swift
 //
 //  Copyright © 2015 Sébastien MICHOY and contributors.
 //

@@ -33,7 +33,8 @@ class MenuManager {
     // MARK: - Methods
     class func menuItemsList() -> [MenuItem] {
         var menuItemsList: [MenuItem] = []
-        menuItemsList.append(MenuItem(title: "Basic", subtitle: "A basic collection view using a flow layout", andStoryboardId: "BasicCollectionViewController"))
+        menuItemsList.append(MenuItem(title: "Basic 01", subtitle: "A basic collection view using a flow layout", andStoryboardId: "Basic01CollectionViewController"))
+        menuItemsList.append(MenuItem(title: "Basic 02", subtitle: "A basic collection view using a flow layout delegate", andStoryboardId: "Basic02CollectionViewController"))
         
         return menuItemsList
     }

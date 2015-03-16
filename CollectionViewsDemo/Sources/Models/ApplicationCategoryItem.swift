@@ -1,5 +1,5 @@
 //
-//  ApplicationIconNameCollectionViewCell.swift
+//  ApplicationCategoryItem.swift
 //
 //  Copyright © 2015 Sébastien MICHOY and contributors.
 //
@@ -26,12 +26,17 @@
 //  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 //  POSSIBILITY OF SUCH DAMAGE.
 
-import UIKit
+import Foundation
 
-@IBDesignable
-class ApplicationIconNameCollectionViewCell: UICollectionViewCell {
+struct ApplicationCategoryItem {
     
     // MARK: - Properties
-    @IBOutlet weak var iconImageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
+    var applications: [ApplicationItem]
+    let category: ApplicationCategory
+    
+    // MARK: - Methods
+    init(category: ApplicationCategory) {
+        self.applications = []
+        self.category = category
+    }
 }

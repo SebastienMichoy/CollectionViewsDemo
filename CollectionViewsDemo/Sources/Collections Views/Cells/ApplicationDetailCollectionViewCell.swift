@@ -1,5 +1,5 @@
 //
-//  ApplicationIconNameCollectionViewCell.swift
+//  ApplicationDetailCollectionViewCell.swift
 //
 //  Copyright © 2015 Sébastien MICHOY and contributors.
 //
@@ -29,9 +29,10 @@
 import UIKit
 
 @IBDesignable
-class ApplicationIconNameCollectionViewCell: UICollectionViewCell {
+class ApplicationDetailCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
+    @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
 }

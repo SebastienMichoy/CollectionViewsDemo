@@ -10,23 +10,28 @@
 		012D73CF1AACE8B80092A49C /* ApplicationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012D73CE1AACE8B80092A49C /* ApplicationItem.swift */; };
 		012D73D11AAD027D0092A49C /* ApplicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012D73D01AAD027D0092A49C /* ApplicationManager.swift */; };
 		014244321AB17C6E007C3795 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 014244311AB17C6E007C3795 /* LaunchScreen.storyboard */; };
-		0148FB4E1AAA37A50057073B /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0148FB4D1AAA37A50057073B /* Tools.swift */; };
+		0148FB4E1AAA37A50057073B /* DeviceInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0148FB4D1AAA37A50057073B /* DeviceInformation.swift */; };
 		019082651AA914360057362F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019082641AA914360057362F /* AppDelegate.swift */; };
 		0190826C1AA914360057362F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0190826B1AA914360057362F /* Images.xcassets */; };
 		01B99B4C1AA98545005F3BEF /* CollectionViewsDemo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01B99B4B1AA98545005F3BEF /* CollectionViewsDemo.storyboard */; };
 		01B99B4E1AA98926005F3BEF /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B99B4D1AA98926005F3BEF /* MenuViewController.swift */; };
 		01B99B501AA98ECB005F3BEF /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01B99B4F1AA98ECB005F3BEF /* MenuItem.swift */; };
 		01C361101AB5D40B004ED706 /* ApplicationIconNameCollectionViewCell+ApplicationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C3610F1AB5D40B004ED706 /* ApplicationIconNameCollectionViewCell+ApplicationItem.swift */; };
+		01C361121AB5DAC9004ED706 /* Basic02CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C361111AB5DAC9004ED706 /* Basic02CollectionViewController.swift */; };
+		01C361141AB5E884004ED706 /* ApplicationDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C361131AB5E884004ED706 /* ApplicationDetailCollectionViewCell.swift */; };
+		01C361161AB5E952004ED706 /* ApplicationDetailCollectionViewCell+ApplicationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C361151AB5E952004ED706 /* ApplicationDetailCollectionViewCell+ApplicationItem.swift */; };
+		01C361181AB60B2A004ED706 /* ApplicationCategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C361171AB60B2A004ED706 /* ApplicationCategoryItem.swift */; };
 		01C75D841AAD7C6300D6E336 /* ApplicationIconNameCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C75D831AAD7C6300D6E336 /* ApplicationIconNameCollectionViewCell.swift */; };
 		01CC5A601AAA307600E63308 /* MenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CC5A5F1AAA307600E63308 /* MenuManager.swift */; };
-		01CC5A641AAA31F500E63308 /* BasicCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CC5A631AAA31F500E63308 /* BasicCollectionViewController.swift */; };
+		01CC5A641AAA31F500E63308 /* Basic01CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CC5A631AAA31F500E63308 /* Basic01CollectionViewController.swift */; };
+		01E5E4D21AB6B698005A0330 /* UIView+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E5E4D11AB6B698005A0330 /* UIView+UI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		012D73CE1AACE8B80092A49C /* ApplicationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationItem.swift; sourceTree = "<group>"; };
 		012D73D01AAD027D0092A49C /* ApplicationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationManager.swift; sourceTree = "<group>"; };
 		014244311AB17C6E007C3795 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		0148FB4D1AAA37A50057073B /* Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
+		0148FB4D1AAA37A50057073B /* DeviceInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceInformation.swift; sourceTree = "<group>"; };
 		0190825F1AA914360057362F /* CollectionViewsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollectionViewsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		019082631AA914360057362F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		019082641AA914360057362F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -35,9 +40,14 @@
 		01B99B4D1AA98926005F3BEF /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		01B99B4F1AA98ECB005F3BEF /* MenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		01C3610F1AB5D40B004ED706 /* ApplicationIconNameCollectionViewCell+ApplicationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ApplicationIconNameCollectionViewCell+ApplicationItem.swift"; sourceTree = "<group>"; };
+		01C361111AB5DAC9004ED706 /* Basic02CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Basic02CollectionViewController.swift; sourceTree = "<group>"; };
+		01C361131AB5E884004ED706 /* ApplicationDetailCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationDetailCollectionViewCell.swift; sourceTree = "<group>"; };
+		01C361151AB5E952004ED706 /* ApplicationDetailCollectionViewCell+ApplicationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ApplicationDetailCollectionViewCell+ApplicationItem.swift"; sourceTree = "<group>"; };
+		01C361171AB60B2A004ED706 /* ApplicationCategoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationCategoryItem.swift; sourceTree = "<group>"; };
 		01C75D831AAD7C6300D6E336 /* ApplicationIconNameCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationIconNameCollectionViewCell.swift; sourceTree = "<group>"; };
 		01CC5A5F1AAA307600E63308 /* MenuManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuManager.swift; sourceTree = "<group>"; };
-		01CC5A631AAA31F500E63308 /* BasicCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicCollectionViewController.swift; sourceTree = "<group>"; };
+		01CC5A631AAA31F500E63308 /* Basic01CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Basic01CollectionViewController.swift; sourceTree = "<group>"; };
+		01E5E4D11AB6B698005A0330 /* UIView+UI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+UI.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +64,8 @@
 		0148FB4C1AAA373B0057073B /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				0148FB4D1AAA37A50057073B /* Tools.swift */,
+				0148FB4D1AAA37A50057073B /* DeviceInformation.swift */,
+				01E5E4D11AB6B698005A0330 /* UIView+UI.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -89,6 +100,7 @@
 			children = (
 				01B99B4F1AA98ECB005F3BEF /* MenuItem.swift */,
 				01CC5A5F1AAA307600E63308 /* MenuManager.swift */,
+				01C361171AB60B2A004ED706 /* ApplicationCategoryItem.swift */,
 				012D73CE1AACE8B80092A49C /* ApplicationItem.swift */,
 				012D73D01AAD027D0092A49C /* ApplicationManager.swift */,
 			);
@@ -107,7 +119,8 @@
 			isa = PBXGroup;
 			children = (
 				01C75D801AAD7AC900D6E336 /* Cells */,
-				01CC5A631AAA31F500E63308 /* BasicCollectionViewController.swift */,
+				01CC5A631AAA31F500E63308 /* Basic01CollectionViewController.swift */,
+				01C361111AB5DAC9004ED706 /* Basic02CollectionViewController.swift */,
 			);
 			path = "Collections Views";
 			sourceTree = "<group>";
@@ -117,6 +130,8 @@
 			children = (
 				01C75D831AAD7C6300D6E336 /* ApplicationIconNameCollectionViewCell.swift */,
 				01C3610F1AB5D40B004ED706 /* ApplicationIconNameCollectionViewCell+ApplicationItem.swift */,
+				01C361131AB5E884004ED706 /* ApplicationDetailCollectionViewCell.swift */,
+				01C361151AB5E952004ED706 /* ApplicationDetailCollectionViewCell+ApplicationItem.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -214,13 +229,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01CC5A641AAA31F500E63308 /* BasicCollectionViewController.swift in Sources */,
+				01CC5A641AAA31F500E63308 /* Basic01CollectionViewController.swift in Sources */,
 				01C75D841AAD7C6300D6E336 /* ApplicationIconNameCollectionViewCell.swift in Sources */,
+				01C361141AB5E884004ED706 /* ApplicationDetailCollectionViewCell.swift in Sources */,
+				01E5E4D21AB6B698005A0330 /* UIView+UI.swift in Sources */,
 				01CC5A601AAA307600E63308 /* MenuManager.swift in Sources */,
 				012D73D11AAD027D0092A49C /* ApplicationManager.swift in Sources */,
+				01C361161AB5E952004ED706 /* ApplicationDetailCollectionViewCell+ApplicationItem.swift in Sources */,
 				01B99B501AA98ECB005F3BEF /* MenuItem.swift in Sources */,
-				0148FB4E1AAA37A50057073B /* Tools.swift in Sources */,
+				0148FB4E1AAA37A50057073B /* DeviceInformation.swift in Sources */,
+				01C361121AB5DAC9004ED706 /* Basic02CollectionViewController.swift in Sources */,
 				019082651AA914360057362F /* AppDelegate.swift in Sources */,
+				01C361181AB60B2A004ED706 /* ApplicationCategoryItem.swift in Sources */,
 				012D73CF1AACE8B80092A49C /* ApplicationItem.swift in Sources */,
 				01B99B4E1AA98926005F3BEF /* MenuViewController.swift in Sources */,
 				01C361101AB5D40B004ED706 /* ApplicationIconNameCollectionViewCell+ApplicationItem.swift in Sources */,

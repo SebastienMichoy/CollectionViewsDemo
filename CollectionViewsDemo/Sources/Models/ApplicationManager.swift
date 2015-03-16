@@ -75,4 +75,18 @@ class ApplicationManager {
     class func applications() -> [ApplicationItem] {
         return self.applicationsItems
     }
+    
+    class func applicationsGroupedByCategories() -> [ApplicationCategoryItem] {
+        var applicationsGroupedByCategories: [String: ApplicationCategoryItem] = [:]
+        
+        for applicationItem in self.applicationsItems {
+            if applicationsGroupedByCategories[applicationItem.category.rawValue] == nil {
+                applicationsGroupedByCategories[applicationItem.category.rawValue] = ApplicationCategoryItem(category: applicationItem.category)
+            }
+            
+            applicationsGroupedByCategories[applicationItem.category.rawValue]!.applications.append(applicationItem)
+        }
+        
+        return applicationsGroupedByCategories.values.array
+    }
 }
