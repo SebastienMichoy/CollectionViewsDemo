@@ -1,5 +1,5 @@
 //
-//  MenuManager.swift
+//  ApplicationHeaderCollectionReusableView.swift
 //
 //  Copyright © 2015 Sébastien MICHOY and contributors.
 //
@@ -26,17 +26,19 @@
 //  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 //  POSSIBILITY OF SUCH DAMAGE.
 
-import Foundation
+import UIKit
 
-class MenuManager {
-   
-    // MARK: - Methods
-    class func menuItemsList() -> [MenuItem] {
-        var menuItemsList: [MenuItem] = []
-        menuItemsList.append(MenuItem(title: "Basic 01", subtitle: "A basic collection view using a flow layout", andStoryboardId: "Basic01CollectionViewController"))
-        menuItemsList.append(MenuItem(title: "Basic 02", subtitle: "A basic collection view using a flow layout delegate", andStoryboardId: "Basic02CollectionViewController"))
-        menuItemsList.append(MenuItem(title: "Header/footer", subtitle: "A collection view displaying headers & footers", andStoryboardId: "HeaderFooterCollectionViewController"))
-        
-        return menuItemsList
+class ApplicationHeaderCollectionReusableView: UICollectionReusableView {
+    
+    // MARK: - Properties
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak private var titleLabelConstraintLeft: NSLayoutConstraint!
+    var titleLabelLeftInset: CGFloat {
+        get {
+            return self.titleLabelConstraintLeft.constant
+        }
+        set {
+            self.titleLabelConstraintLeft.constant = newValue
+        }
     }
 }

@@ -1,5 +1,5 @@
 //
-//  Basic01CollectionViewController.swift
+//  HeaderFooterCollectionViewController.swift
 //
 //  Copyright © 2015 Sébastien MICHOY and contributors.
 //
@@ -28,16 +28,16 @@
 
 import UIKit
 
-class Basic01CollectionViewController: UIViewController, UICollectionViewDataSource {
+class HeaderFooterCollectionViewController: UIViewController, UICollectionViewDataSource {
 
     // MARK: - Properties
     @IBOutlet weak var collectionView: UICollectionView!
-    let applications: [ApplicationItem]
+    let applicationsGroupedByCategory: [ApplicationCategoryItem]
     
     // MARK: - Methods
     // MARK: Init / deinit
     required init(coder aDecoder: NSCoder) {
-        self.applications = ApplicationManager.applications()
+        self.applicationsGroupedByCategory = ApplicationManager.applicationsGroupedByCategories()
         
         super.init(coder: aDecoder)
     }
@@ -53,25 +53,45 @@ class Basic01CollectionViewController: UIViewController, UICollectionViewDataSou
         collectionViewFlowLayout.minimumInteritemSpacing = spacesWidth
         collectionViewFlowLayout.itemSize = ApplicationIconNameCollectionViewCell.standardSizeForApplicationItem()
         collectionViewFlowLayout.sectionInset = UIEdgeInsets(top: 10, left: spacesWidth, bottom: 5, right: spacesWidth)
+        collectionViewFlowLayout.headerReferenceSize = CGSize(width: 0, height: 30)
+        collectionViewFlowLayout.footerReferenceSize = CGSize(width: 0, height: 14)
         
         self.collectionView.collectionViewLayout = collectionViewFlowLayout
     }
     
     // MARK: UICollectionViewDataSource protocol
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let application = self.applications[indexPath.row]
+        let application = self.applicationsGroupedByCategory[indexPath.section].applications[indexPath.row]
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ApplicationIconNameCollectionViewCell", forIndexPath: indexPath) as! ApplicationIconNameCollectionViewCell
-
+        
         cell.fillWithApplicationItem(application)
         
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.applications.count
+        return self.applicationsGroupedByCategory[section].applications.count
+    }
+    
+    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        let applicationCategory = self.applicationsGroupedByCategory[indexPath.section]
+        let supplementaryView: UICollectionReusableView
+        
+        if kind == UICollectionElementKindSectionHeader {
+            let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "ApplicationHeaderCollectionReusableView", forIndexPath: indexPath) as! ApplicationHeaderCollectionReusableView
+            header.fillWithApplicationCategoryItem(applicationCategory)
+            header.titleLabelLeftInset = deviceType() == .Phone ? 10 : 18
+            supplementaryView = header
+        } else {
+            let footer = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "ApplicationFooterCollectionReusableView", forIndexPath: indexPath) as! ApplicationFooterCollectionReusableView
+            footer.fillWithApplicationCategoryItem(applicationCategory)
+            supplementaryView = footer
+        }
+        
+        return supplementaryView
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
+        return self.applicationsGroupedByCategory.count
     }
 }

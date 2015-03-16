@@ -7,6 +7,8 @@
 
 ## Examples
 0. A basic collection view using a flow layout.
+0. A basic collection view using a flow layout delegate.
+0. A collection view displaying headers & footers.
 
 ## Credit
 This document and sources are written and developed by [Sébastien MICHOY](http://www.linkedin.com/in/sebastienmichoy).
