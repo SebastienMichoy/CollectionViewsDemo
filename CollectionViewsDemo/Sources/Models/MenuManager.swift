@@ -37,6 +37,7 @@ class MenuManager {
         menuItemsList.append(MenuItem(title: "Basic 02", subtitle: "A basic collection view using a flow layout delegate", andStoryboardId: "Basic02CollectionViewController"))
         menuItemsList.append(MenuItem(title: "Header/footer", subtitle: "A collection view displaying headers & footers", andStoryboardId: "HeaderFooterCollectionViewController"))
         menuItemsList.append(MenuItem(title: "Decoration", subtitle: "A collection view using decoration views", andStoryboardId: "DecorationCollectionViewController"))
+        menuItemsList.append(MenuItem(title: "Horizontal", subtitle: "A horizontal collection view", andStoryboardId: "HorizontalCollectionViewController"))
         
         return menuItemsList
     }

@@ -11,6 +11,7 @@
 0. A basic collection view using a flow layout delegate.
 0. A collection view displaying headers & footers.
 0. A collection view using decoration views.
+0. A horizontal collection view.
 
 ## Credit
 This document and sources are written and developed by [Sébastien MICHOY](http://www.linkedin.com/in/sebastienmichoy).

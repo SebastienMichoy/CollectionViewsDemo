@@ -124,6 +124,26 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
+		<key>015DAD5C1ABA37AF0060DC1B</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>HorizontalCollectionViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>015DAD5D1ABA37AF0060DC1B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>015DAD5C1ABA37AF0060DC1B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>016248D01AB80B7200D73EF6</key>
 		<dict>
 			<key>children</key>
@@ -264,6 +284,7 @@
 				<string>01BF66F31AB79A7A00254A66</string>
 				<string>0104AEF21AB8088C008EDFBE</string>
 				<string>012D73D11AAD027D0092A49C</string>
+				<string>015DAD5D1ABA37AF0060DC1B</string>
 				<string>01C361161AB5E952004ED706</string>
 				<string>01BF66EF1AB7941700254A66</string>
 				<string>01B99B501AA98ECB005F3BEF</string>
@@ -673,6 +694,7 @@
 				<string>01C361111AB5DAC9004ED706</string>
 				<string>01BF66E91AB7856600254A66</string>
 				<string>0104AEF11AB8088C008EDFBE</string>
+				<string>015DAD5C1ABA37AF0060DC1B</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
