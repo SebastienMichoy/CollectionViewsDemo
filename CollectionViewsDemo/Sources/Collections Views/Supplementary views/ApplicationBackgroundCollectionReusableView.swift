@@ -1,5 +1,5 @@
 //
-//  MenuManager.swift
+//  ApplicationBackgroundCollectionReusableView.swift
 //
 //  Copyright © 2015 Sébastien MICHOY and contributors.
 //
@@ -26,18 +26,31 @@
 //  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 //  POSSIBILITY OF SUCH DAMAGE.
 
-import Foundation
+import UIKit
 
-class MenuManager {
-   
+class ApplicationBackgroundCollectionReusableView: UICollectionReusableView {
+    
     // MARK: - Methods
-    class func menuItemsList() -> [MenuItem] {
-        var menuItemsList: [MenuItem] = []
-        menuItemsList.append(MenuItem(title: "Basic 01", subtitle: "A basic collection view using a flow layout", andStoryboardId: "Basic01CollectionViewController"))
-        menuItemsList.append(MenuItem(title: "Basic 02", subtitle: "A basic collection view using a flow layout delegate", andStoryboardId: "Basic02CollectionViewController"))
-        menuItemsList.append(MenuItem(title: "Header/footer", subtitle: "A collection view displaying headers & footers", andStoryboardId: "HeaderFooterCollectionViewController"))
-        menuItemsList.append(MenuItem(title: "Decoration", subtitle: "A collection view using decoration views", andStoryboardId: "DecorationCollectionViewController"))
+    // MARK: Class methods
+    class func kind() -> String {
+        return "ApplicationBackgroundCollectionReusableView"
+    }
+    
+    // MARK: Init / deinit
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
         
-        return menuItemsList
+        self.setup()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        self.setup()
+    }
+    
+    // MARK: Setup
+    func setup() {
+        self.backgroundColor = UIColor.clearColor()
     }
 }
