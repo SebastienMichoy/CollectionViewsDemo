@@ -36,7 +36,7 @@ class Basic01CollectionViewController: UIViewController, UICollectionViewDataSou
     
     // MARK: - Methods
     // MARK: Init / deinit
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         self.applications = ApplicationManager.applications()
         
         super.init(coder: aDecoder)

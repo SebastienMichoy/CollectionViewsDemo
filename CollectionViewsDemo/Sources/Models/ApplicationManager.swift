@@ -87,6 +87,6 @@ class ApplicationManager {
             applicationsGroupedByCategories[applicationItem.category.rawValue]!.applications.append(applicationItem)
         }
         
-        return applicationsGroupedByCategories.values.array
+        return Array(applicationsGroupedByCategories.values)
     }
 }

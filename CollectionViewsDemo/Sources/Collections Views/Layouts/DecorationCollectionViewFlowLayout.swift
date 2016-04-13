@@ -45,7 +45,7 @@ class DecorationCollectionViewFlowLayout: UICollectionViewFlowLayout {
         self.registerClass(ApplicationBackgroundCollectionReusableView.self, forDecorationViewOfKind: ApplicationBackgroundCollectionReusableView.kind())
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         self.decorationAttributes = [:]
         self.sectionsWidthOrHeight = [:]
         
@@ -55,16 +55,16 @@ class DecorationCollectionViewFlowLayout: UICollectionViewFlowLayout {
     }
     
     // MARK: Providing layout attributes
-    override func layoutAttributesForDecorationViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes! {
+    override func layoutAttributesForDecorationViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
         return self.decorationAttributes[indexPath]
     }
     
-    override func layoutAttributesForElementsInRect(rect: CGRect) -> [AnyObject]? {
+    override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         var attributes = super.layoutAttributesForElementsInRect(rect)
         let numberOfSections = self.collectionView!.numberOfSections()
         var xOrYOffset = 0 as CGFloat
         
-        for var sectionNumber = 0; sectionNumber < numberOfSections; sectionNumber++ {
+        for sectionNumber in 0 ..< numberOfSections {
             let indexPath = NSIndexPath(forRow: 0, inSection: sectionNumber)
             let sectionWidthOrHeight = self.sectionsWidthOrHeight[indexPath]!
             let decorationAttribute = UICollectionViewLayoutAttributes(forDecorationViewOfKind: ApplicationBackgroundCollectionReusableView.kind(), withIndexPath: indexPath)
@@ -97,7 +97,7 @@ class DecorationCollectionViewFlowLayout: UICollectionViewFlowLayout {
             let numberMaxOfCellsPerRow = floorf(Float((collectionViewWidthAvailableForCells + self.minimumInteritemSpacing) / (self.itemSize.width + self.minimumInteritemSpacing)))
             let numberOfSections = self.collectionView!.numberOfSections()
             
-            for var sectionNumber = 0; sectionNumber < numberOfSections; sectionNumber++ {
+            for sectionNumber in 0 ..< numberOfSections {
                 let numberOfCells = Float(self.collectionView!.numberOfItemsInSection(sectionNumber))
                 let numberOfRows = CGFloat(ceilf(numberOfCells / numberMaxOfCellsPerRow))
                 let sectionHeight = (numberOfRows * self.itemSize.height) + ((numberOfRows - 1) * self.minimumLineSpacing) + self.headerReferenceSize.height + self.footerReferenceSize.height + self.sectionInset.bottom + self.sectionInset.top
@@ -109,7 +109,7 @@ class DecorationCollectionViewFlowLayout: UICollectionViewFlowLayout {
             let numberMaxOfCellsPerColumn = floorf(Float((collectionViewHeightAvailableForCells + self.minimumInteritemSpacing) / (self.itemSize.height + self.minimumInteritemSpacing)))
             let numberOfSections = self.collectionView!.numberOfSections()
             
-            for var sectionNumber = 0; sectionNumber < numberOfSections; sectionNumber++ {
+            for sectionNumber in 0 ..< numberOfSections {
                 let numberOfCells = Float(self.collectionView!.numberOfItemsInSection(sectionNumber))
                 let numberOfColumns = CGFloat(ceilf(numberOfCells / numberMaxOfCellsPerColumn))
                 let sectionWidth = (numberOfColumns * self.itemSize.width) + ((numberOfColumns - 1) * self.minimumLineSpacing) + self.headerReferenceSize.width + self.footerReferenceSize.width + self.sectionInset.left + self.sectionInset.right

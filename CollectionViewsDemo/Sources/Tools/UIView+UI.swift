@@ -33,7 +33,8 @@ extension UIView {
     // MARK: - Properties
     @IBInspectable var borderColor: UIColor? {
         get {
-            return UIColor(CGColor: layer.borderColor)
+            guard let borderColor = layer.borderColor else { return nil }
+            return UIColor(CGColor: borderColor)
         }
         set {
             layer.borderColor = newValue?.CGColor

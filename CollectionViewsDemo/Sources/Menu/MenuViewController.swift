@@ -38,7 +38,7 @@ class MenuViewController: UIViewController, UISplitViewControllerDelegate, UITab
     
     // MARK: - Methods
     // MARK: Init/deinit
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         self.collapseDetailViewController = true
         self.lastIndexPathSelected = NSIndexPath(forRow: 0, inSection: 0)
         self.menuItems = MenuManager.menuItemsList()
@@ -81,13 +81,13 @@ class MenuViewController: UIViewController, UISplitViewControllerDelegate, UITab
     }
     
     // MARK: UISplitViewControllerDelegate protocol
-    func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController: UIViewController!, ontoPrimaryViewController primaryViewController: UIViewController!) -> Bool {
+    func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController: UIViewController, ontoPrimaryViewController primaryViewController: UIViewController) -> Bool {
         return self.collapseDetailViewController
     }
     
     // MARK: UITableViewDataSource protocol
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         let menuItem = self.menuItems[indexPath.row]
         
         cell.textLabel?.text = menuItem.title
@@ -109,7 +109,7 @@ class MenuViewController: UIViewController, UISplitViewControllerDelegate, UITab
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let menuItem = self.menuItems[indexPath.row]
         let storyboard = UIStoryboard(name: "CollectionViewsDemo", bundle: nil)
-        let viewController = storyboard.instantiateViewControllerWithIdentifier(menuItem.storyboardId) as! UIViewController
+        let viewController = storyboard.instantiateViewControllerWithIdentifier(menuItem.storyboardId) 
         let navigationController = UINavigationController(rootViewController: viewController)
         
         if let splitViewController = self.splitViewController {

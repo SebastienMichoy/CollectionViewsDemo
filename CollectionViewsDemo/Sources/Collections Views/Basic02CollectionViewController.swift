@@ -36,7 +36,7 @@ class Basic02CollectionViewController: UIViewController, UICollectionViewDataSou
     
     // MARK: - Methods
     // MARK: Init / deinit
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         self.applicationsGroupedByCategory = ApplicationManager.applicationsGroupedByCategories()
         
         super.init(coder: aDecoder)

@@ -46,11 +46,11 @@ func deviceModel() -> DeviceModel {
     uname(&systemInfo)
     
     let machine = systemInfo.machine
-    let mirror = reflect(machine)
+    let mirror = Mirror(reflecting: machine) //reflect(machine)
     var modelId = ""
     
-    for i in 0 ..< mirror.count {
-        if let value  = mirror[i].1.value as? Int8 where value != 0 {
+    for child in mirror.children {
+        if let value = child.value as? Int8 where value != 0 {
             modelId.append(UnicodeScalar(UInt8(value)))
         }
     }

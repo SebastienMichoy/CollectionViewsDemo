@@ -41,8 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let splitViewController = self.window?.rootViewController as? UISplitViewController {
             if splitViewController.viewControllers.count >= 2 {
                 if let navigationController = splitViewController.viewControllers[1] as? UINavigationController {
-                    navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
-                    navigationController.topViewController.navigationItem.leftItemsSupplementBackButton = true
+                    navigationController.topViewController?.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
+                    navigationController.topViewController?.navigationItem.leftItemsSupplementBackButton = true
                 }
             }
         }
