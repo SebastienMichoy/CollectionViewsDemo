@@ -39,7 +39,8 @@ enum ApplicationCategory: String {
 
 struct ApplicationItem {
     
-    // MARK: - Properties
+    // MARK: Properties
+    
     let authorName: String
     let bundleName: String
     let category: ApplicationCategory
@@ -47,7 +48,8 @@ struct ApplicationItem {
     let imageName: String
     let name: String
     
-    // MARK: - Methods
+    // MARK: Initialization
+    
     init(name: String, bundleName: String, authorName: String, imageName: String, andCategory category: ApplicationCategory) {
         self.authorName = authorName
         self.bundleName = bundleName

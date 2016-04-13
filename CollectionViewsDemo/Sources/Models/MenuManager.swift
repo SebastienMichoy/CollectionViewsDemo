@@ -30,7 +30,8 @@ import Foundation
 
 class MenuManager {
    
-    // MARK: - Methods
+    // MARK: Methods
+    
     class func menuItemsList() -> [MenuItem] {
         var menuItemsList: [MenuItem] = []
         menuItemsList.append(MenuItem(title: "Basic 01", subtitle: "A basic collection view using a flow layout", andStoryboardId: "Basic01CollectionViewController"))

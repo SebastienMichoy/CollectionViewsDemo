@@ -30,12 +30,14 @@ import Foundation
 
 struct MenuItem {
    
-    // MARK: - Properties
+    // MARK: Properties
+    
     let storyboardId: String
     let subtitle: String
     let title: String
     
-    // MARK: - Methods
+    // MARK: Methods
+    
     init(title: String, subtitle: String, andStoryboardId storyboardId: String) {
         self.storyboardId = storyboardId
         self.subtitle = subtitle

@@ -30,11 +30,13 @@ import Foundation
 
 struct ApplicationCategoryItem {
     
-    // MARK: - Properties
+    // MARK: Properties
+    
     var applications: [ApplicationItem]
     let category: ApplicationCategory
     
-    // MARK: - Methods
+    // MARK: Initialization
+    
     init(category: ApplicationCategory) {
         self.applications = []
         self.category = category

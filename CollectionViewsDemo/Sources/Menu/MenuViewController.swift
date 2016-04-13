@@ -28,16 +28,17 @@
 
 import UIKit
 
-class MenuViewController: UIViewController, UISplitViewControllerDelegate, UITableViewDataSource, UITableViewDelegate {
+class MenuViewController: UIViewController {
     
-    // MARK: - Properties
+    // MARK: Properties
+    
     private var collapseDetailViewController: Bool
     private var lastIndexPathSelected: NSIndexPath
     private let menuItems: [MenuItem]
-    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private var tableView: UITableView!
     
-    // MARK: - Methods
-    // MARK: Init/deinit
+    // MARK: Initialization
+    
     required init?(coder aDecoder: NSCoder) {
         self.collapseDetailViewController = true
         self.lastIndexPathSelected = NSIndexPath(forRow: 0, inSection: 0)
@@ -46,7 +47,8 @@ class MenuViewController: UIViewController, UISplitViewControllerDelegate, UITab
         super.init(coder: aDecoder)
     }
     
-    // MARK: View life cycle
+    // MARK: View Life Cycle
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -64,28 +66,36 @@ class MenuViewController: UIViewController, UISplitViewControllerDelegate, UITab
     }
     
     // MARK: Rotation
+    
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        
-        let animation = {(context: UIViewControllerTransitionCoordinatorContext!) -> Void in
+        let animation: (UIViewControllerTransitionCoordinatorContext!) -> Void = { context in
             if deviceModel() == .iPhone6Plus && (deviceOrientation() == .LandscapeLeft || deviceOrientation() == .LandscapeRight) {
                 self.tableView.selectRowAtIndexPath(self.lastIndexPathSelected, animated: false, scrollPosition: .Top)
             }
         }
         
-        let completion = {(context: UIViewControllerTransitionCoordinatorContext!) -> Void in
+        let completion: (UIViewControllerTransitionCoordinatorContext!) -> Void = { context in
         }
         
-        coordinator .animateAlongsideTransition(animation, completion: completion)
+        coordinator.animateAlongsideTransition(animation, completion: completion)
         
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
     }
-    
+}
+
+extension MenuViewController: UISplitViewControllerDelegate {
+
     // MARK: UISplitViewControllerDelegate protocol
+    
     func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController: UIViewController, ontoPrimaryViewController primaryViewController: UIViewController) -> Bool {
         return self.collapseDetailViewController
     }
-    
+}
+
+extension MenuViewController: UITableViewDataSource {
+
     // MARK: UITableViewDataSource protocol
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
         let menuItem = self.menuItems[indexPath.row]
@@ -104,8 +114,12 @@ class MenuViewController: UIViewController, UISplitViewControllerDelegate, UITab
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.menuItems.count
     }
-    
+}
+
+extension MenuViewController: UITableViewDelegate {
+
     // MARK: UITableViewDelegate protocol
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let menuItem = self.menuItems[indexPath.row]
         let storyboard = UIStoryboard(name: "CollectionViewsDemo", bundle: nil)

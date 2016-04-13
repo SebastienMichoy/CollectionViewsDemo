@@ -28,7 +28,8 @@
 
 import UIKit
 
-// MARK: Device information
+// MARK: Device Information
+
 enum DeviceModel {
     case iPad2, iPad3, iPadMini, iPad4, iPadMini2, iPadAir, iPadMini3, iPadAir2
     case iPhone4, iPhone4S, iPhone5, iPhone5C, iPhone5S, iPhone6, iPhone6Plus
