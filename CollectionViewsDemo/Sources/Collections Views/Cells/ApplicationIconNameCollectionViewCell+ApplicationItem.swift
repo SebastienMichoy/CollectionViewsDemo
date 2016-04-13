@@ -30,7 +30,7 @@ import UIKit
 
 extension ApplicationIconNameCollectionViewCell {
     
-    // MARK: Class method
+    // MARK: Class Method
     
     class func standardSizeForApplicationItem() -> CGSize {
         let cellSize: CGSize
@@ -44,7 +44,7 @@ extension ApplicationIconNameCollectionViewCell {
         return cellSize
     }
     
-    // MARK: Fill cell
+    // MARK: Fill Cell
     
     func fillWithApplicationItem(application: ApplicationItem) {
         self.iconImageView.image = UIImage(named: application.imageName)

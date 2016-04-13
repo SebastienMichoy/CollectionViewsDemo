@@ -43,7 +43,7 @@ class HeaderFooterCollectionViewController: UIViewController {
         super.init(coder: aDecoder)
     }
     
-    // MARK: View life cycle
+    // MARK: View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +64,7 @@ class HeaderFooterCollectionViewController: UIViewController {
 
 extension HeaderFooterCollectionViewController: UICollectionViewDataSource {
 
-    // MARK: UICollectionViewDataSource protocol
+    // MARK: UICollectionViewDataSource Protocol
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let application = self.applicationsGroupedByCategory[indexPath.section].applications[indexPath.row]

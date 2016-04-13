@@ -55,7 +55,7 @@ class DecorationCollectionViewFlowLayout: UICollectionViewFlowLayout {
         self.registerClass(ApplicationBackgroundCollectionReusableView.self, forDecorationViewOfKind: ApplicationBackgroundCollectionReusableView.kind())
     }
     
-    // MARK: Providing layout attributes
+    // MARK: Providing Layout Attributes
     
     override func layoutAttributesForDecorationViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
         return self.decorationAttributes[indexPath]

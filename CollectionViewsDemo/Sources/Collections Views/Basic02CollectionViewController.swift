@@ -43,7 +43,7 @@ class Basic02CollectionViewController: UIViewController {
         super.init(coder: aDecoder)
     }
     
-    // MARK: View life cycle
+    // MARK: View Life Cycle
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -69,7 +69,7 @@ class Basic02CollectionViewController: UIViewController {
 
 extension Basic02CollectionViewController: UICollectionViewDataSource {
     
-    // MARK: UICollectionViewDataSource protocol
+    // MARK: UICollectionViewDataSource Protocol
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let application = self.applicationsGroupedByCategory[indexPath.section].applications[indexPath.row]
@@ -99,7 +99,7 @@ extension Basic02CollectionViewController: UICollectionViewDataSource {
 
 extension Basic02CollectionViewController: UICollectionViewDelegateFlowLayout {
     
-    // MARK: UICollectionViewDelegateFlowLayout protocol
+    // MARK: UICollectionViewDelegateFlowLayout Protocol
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         let spacesWidth = (deviceType() == .Phone) ? 2 : 10 as CGFloat

@@ -85,7 +85,7 @@ class MenuViewController: UIViewController {
 
 extension MenuViewController: UISplitViewControllerDelegate {
 
-    // MARK: UISplitViewControllerDelegate protocol
+    // MARK: UISplitViewControllerDelegate Protocol
     
     func splitViewController(splitViewController: UISplitViewController, collapseSecondaryViewController secondaryViewController: UIViewController, ontoPrimaryViewController primaryViewController: UIViewController) -> Bool {
         return self.collapseDetailViewController
@@ -94,7 +94,7 @@ extension MenuViewController: UISplitViewControllerDelegate {
 
 extension MenuViewController: UITableViewDataSource {
 
-    // MARK: UITableViewDataSource protocol
+    // MARK: UITableViewDataSource Protocol
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
@@ -118,7 +118,7 @@ extension MenuViewController: UITableViewDataSource {
 
 extension MenuViewController: UITableViewDelegate {
 
-    // MARK: UITableViewDelegate protocol
+    // MARK: UITableViewDelegate Protocol
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let menuItem = self.menuItems[indexPath.row]

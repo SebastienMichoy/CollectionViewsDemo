@@ -43,7 +43,7 @@ class Basic01CollectionViewController: UIViewController {
         super.init(coder: aDecoder)
     }
     
-    // MARK: View life cycle
+    // MARK: View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +62,7 @@ class Basic01CollectionViewController: UIViewController {
 
 extension Basic01CollectionViewController: UICollectionViewDataSource {
     
-    // MARK: UICollectionViewDataSource protocol
+    // MARK: UICollectionViewDataSource Protocol
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let application = self.applications[indexPath.row]

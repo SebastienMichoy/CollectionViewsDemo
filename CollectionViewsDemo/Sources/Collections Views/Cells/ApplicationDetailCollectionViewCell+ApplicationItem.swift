@@ -30,13 +30,13 @@ import UIKit
 
 extension ApplicationDetailCollectionViewCell {
     
-    // MARK: Class method
+    // MARK: Class Method
     
     class func standardHeightForApplicationItem() -> CGFloat {
         return (deviceType() == .Phone) ? 60 + 16 : 72 + 16 as CGFloat
     }
     
-    // MARK: Fill cell
+    // MARK: Fill Cell
     
     func fillWithApplicationItem(application: ApplicationItem) {
         self.iconImageView.image = UIImage(named: application.imageName)

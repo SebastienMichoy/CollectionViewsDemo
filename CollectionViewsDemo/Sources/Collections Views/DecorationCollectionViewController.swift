@@ -43,7 +43,7 @@ class DecorationCollectionViewController: UIViewController {
         super.init(coder: aDecoder)
     }
     
-    // MARK: View life cycle
+    // MARK: View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +64,7 @@ class DecorationCollectionViewController: UIViewController {
 
 extension DecorationCollectionViewController: UICollectionViewDataSource {
     
-    // MARK: UICollectionViewDataSource protocol
+    // MARK: UICollectionViewDataSource Protocol
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let application = self.applicationsGroupedByCategory[indexPath.section].applications[indexPath.row]
@@ -104,7 +104,7 @@ extension DecorationCollectionViewController: UICollectionViewDataSource {
 
 extension DecorationCollectionViewController: UICollectionViewDelegate {
 
-    // MARK: UICollectionViewDelegate protocol
+    // MARK: UICollectionViewDelegate Protocol
     
     func collectionView(collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, atIndexPath indexPath: NSIndexPath) {
         if elementKind == UICollectionElementKindSectionHeader, let view = view as? ApplicationHeaderCollectionReusableView {

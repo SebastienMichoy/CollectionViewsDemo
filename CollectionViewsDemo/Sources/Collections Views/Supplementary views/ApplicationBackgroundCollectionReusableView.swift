@@ -30,7 +30,7 @@ import UIKit
 
 class ApplicationBackgroundCollectionReusableView: UICollectionReusableView {
     
-    // MARK: Class methods
+    // MARK: Class Methods
     
     class func kind() -> String {
         return "ApplicationBackgroundCollectionReusableView"

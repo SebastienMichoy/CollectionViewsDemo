@@ -65,7 +65,7 @@ class HorizontalCollectionViewController: UIViewController {
 
 extension HorizontalCollectionViewController: UICollectionViewDataSource {
 
-    // MARK: UICollectionViewDataSource protocol
+    // MARK: UICollectionViewDataSource Protocol
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let application = self.applicationsGroupedByCategory[indexPath.section].applications[indexPath.row]
@@ -106,7 +106,7 @@ extension HorizontalCollectionViewController: UICollectionViewDataSource {
 
 extension HorizontalCollectionViewController: UICollectionViewDelegate {
 
-    // MARK: UICollectionViewDelegate protocol
+    // MARK: UICollectionViewDelegate Protocol
     
     func collectionView(collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, atIndexPath indexPath: NSIndexPath) {
         if elementKind == UICollectionElementKindSectionHeader, let view = view as? ApplicationHeaderCollectionReusableView {

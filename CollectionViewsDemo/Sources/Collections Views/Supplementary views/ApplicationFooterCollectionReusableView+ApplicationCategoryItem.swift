@@ -30,7 +30,7 @@ import UIKit
 
 extension ApplicationFooterCollectionReusableView {
     
-    // MARK: Fill cell
+    // MARK: Fill Cell
     
     func fillWithApplicationCategoryItem(applicationCategory: ApplicationCategoryItem) {
         if applicationCategory.applications.count <= 1 {
