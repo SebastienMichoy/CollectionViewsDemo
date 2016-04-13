@@ -30,8 +30,8 @@ import UIKit
 
 extension ApplicationIconNameCollectionViewCell {
     
-    // MARK: - Methods
     // MARK: Class method
+    
     class func standardSizeForApplicationItem() -> CGSize {
         let cellSize: CGSize
         
@@ -45,11 +45,12 @@ extension ApplicationIconNameCollectionViewCell {
     }
     
     // MARK: Fill cell
+    
     func fillWithApplicationItem(application: ApplicationItem) {
         self.iconImageView.image = UIImage(named: application.imageName)
         self.nameLabel.text = application.bundleName
         
-        if (deviceType() == .Phone) {
+        if deviceType() == .Phone {
             self.nameLabel.font = self.nameLabel.font.fontWithSize(10)
         }
     }

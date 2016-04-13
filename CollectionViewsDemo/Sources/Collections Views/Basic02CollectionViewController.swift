@@ -28,14 +28,15 @@
 
 import UIKit
 
-class Basic02CollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class Basic02CollectionViewController: UIViewController {
     
-    // MARK: - Properties
-    @IBOutlet weak var collectionView: UICollectionView!
+    // MARK: Properties
+    
     let applicationsGroupedByCategory: [ApplicationCategoryItem]
+    @IBOutlet var collectionView: UICollectionView!
     
-    // MARK: - Methods
-    // MARK: Init / deinit
+    // MARK: Initialization
+    
     required init?(coder aDecoder: NSCoder) {
         self.applicationsGroupedByCategory = ApplicationManager.applicationsGroupedByCategories()
         
@@ -43,6 +44,7 @@ class Basic02CollectionViewController: UIViewController, UICollectionViewDataSou
     }
     
     // MARK: View life cycle
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
@@ -50,26 +52,30 @@ class Basic02CollectionViewController: UIViewController, UICollectionViewDataSou
     }
     
     // MARK: Rotation
+    
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        
-        let animation = {(context: UIViewControllerTransitionCoordinatorContext!) -> Void in
+        let animation: (UIViewControllerTransitionCoordinatorContext!) -> Void = { context in
             self.collectionView.collectionViewLayout.invalidateLayout()
         }
         
-        let completion = {(context: UIViewControllerTransitionCoordinatorContext!) -> Void in
+        let completion: (UIViewControllerTransitionCoordinatorContext!) -> Void = {context in
         }
         
-        coordinator .animateAlongsideTransition(animation, completion: completion)
+        coordinator.animateAlongsideTransition(animation, completion: completion)
         
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
     }
+}
+
+extension Basic02CollectionViewController: UICollectionViewDataSource {
     
     // MARK: UICollectionViewDataSource protocol
+    
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let application = self.applicationsGroupedByCategory[indexPath.section].applications[indexPath.row]
         let cell: UICollectionViewCell
         
-        if (indexPath.section % 2 == 0) {
+        if indexPath.section % 2 == 0 {
             let cellIcon = collectionView.dequeueReusableCellWithReuseIdentifier("ApplicationIconNameCollectionViewCell", forIndexPath: indexPath) as! ApplicationIconNameCollectionViewCell
             cellIcon.fillWithApplicationItem(application)
             cell = cellIcon
@@ -89,23 +95,27 @@ class Basic02CollectionViewController: UIViewController, UICollectionViewDataSou
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return self.applicationsGroupedByCategory.count
     }
+}
+
+extension Basic02CollectionViewController: UICollectionViewDelegateFlowLayout {
     
     // MARK: UICollectionViewDelegateFlowLayout protocol
+    
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        let spacesWidth = deviceType() == .Phone ? 2 : 10 as CGFloat
+        let spacesWidth = (deviceType() == .Phone) ? 2 : 10 as CGFloat
         let inset = UIEdgeInsets(top: 10, left: spacesWidth, bottom: 5, right: spacesWidth)
         
         return inset
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-        let spacesWidth = deviceType() == .Phone ? 2 : 10 as CGFloat
+        let spacesWidth = (deviceType() == .Phone) ? 2 : 10 as CGFloat
         
         return spacesWidth
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        let spacesWidth = deviceType() == .Phone ? 2 : 10 as CGFloat
+        let spacesWidth = (deviceType() == .Phone) ? 2 : 10 as CGFloat
         
         return spacesWidth
     }
@@ -113,7 +123,7 @@ class Basic02CollectionViewController: UIViewController, UICollectionViewDataSou
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let cellSize: CGSize
         
-        if (indexPath.section % 2 == 0) {
+        if indexPath.section % 2 == 0 {
             cellSize = ApplicationIconNameCollectionViewCell.standardSizeForApplicationItem()
         } else {
             let inset = self.collectionView(collectionView, layout: collectionViewLayout, insetForSectionAtIndex: indexPath.section)

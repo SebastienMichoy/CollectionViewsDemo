@@ -30,13 +30,14 @@ import UIKit
 
 class ApplicationBackgroundCollectionReusableView: UICollectionReusableView {
     
-    // MARK: - Methods
     // MARK: Class methods
+    
     class func kind() -> String {
         return "ApplicationBackgroundCollectionReusableView"
     }
     
-    // MARK: Init / deinit
+    // MARK: Initialization
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -50,6 +51,7 @@ class ApplicationBackgroundCollectionReusableView: UICollectionReusableView {
     }
     
     // MARK: Setup
+    
     func setup() {
         self.backgroundColor = UIColor.clearColor()
     }

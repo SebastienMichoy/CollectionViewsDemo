@@ -28,25 +28,27 @@
 
 import UIKit
 
-class HorizontalCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class HorizontalCollectionViewController: UIViewController {
 
-    // MARK: - Properties
-    @IBOutlet weak var collectionView: UICollectionView!
-    let applicationsGroupedByCategory: [ApplicationCategoryItem]
+    // MARK: Properties
     
-    // MARK: - Methods
-    // MARK: Init / deinit
+    let applicationsGroupedByCategory: [ApplicationCategoryItem]
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    // MARK: Initialization
+    
     required init?(coder aDecoder: NSCoder) {
         self.applicationsGroupedByCategory = ApplicationManager.applicationsGroupedByCategories()
         
         super.init(coder: aDecoder)
     }
     
-    // MARK: View life cycle
+    // MARK: View Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let spacesWidth = deviceType() == .Phone ? 2 : 10 as CGFloat
+        let spacesWidth = (deviceType() == .Phone) ? 2 : 10 as CGFloat
         
         let collectionViewFlowLayout = DecorationCollectionViewFlowLayout()
         collectionViewFlowLayout.minimumLineSpacing = spacesWidth
@@ -59,8 +61,12 @@ class HorizontalCollectionViewController: UIViewController, UICollectionViewData
         
         self.collectionView.collectionViewLayout = collectionViewFlowLayout
     }
-    
+}
+
+extension HorizontalCollectionViewController: UICollectionViewDataSource {
+
     // MARK: UICollectionViewDataSource protocol
+    
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let application = self.applicationsGroupedByCategory[indexPath.section].applications[indexPath.row]
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ApplicationIconNameCollectionViewCell", forIndexPath: indexPath) as! ApplicationIconNameCollectionViewCell
@@ -96,8 +102,12 @@ class HorizontalCollectionViewController: UIViewController, UICollectionViewData
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return self.applicationsGroupedByCategory.count
     }
-    
+}
+
+extension HorizontalCollectionViewController: UICollectionViewDelegate {
+
     // MARK: UICollectionViewDelegate protocol
+    
     func collectionView(collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, atIndexPath indexPath: NSIndexPath) {
         if elementKind == UICollectionElementKindSectionHeader, let view = view as? ApplicationHeaderCollectionReusableView {
             view.titleLabel.textColor = UIColor.whiteColor()

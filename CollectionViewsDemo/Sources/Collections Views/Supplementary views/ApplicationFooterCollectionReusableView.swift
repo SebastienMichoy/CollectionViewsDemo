@@ -30,6 +30,7 @@ import UIKit
 
 class ApplicationFooterCollectionReusableView: UICollectionReusableView {
     
-    // MARK: - Properties
-    @IBOutlet weak var titleLabel: UILabel!
+    // MARK: Properties
+    
+    @IBOutlet var titleLabel: UILabel!
 }

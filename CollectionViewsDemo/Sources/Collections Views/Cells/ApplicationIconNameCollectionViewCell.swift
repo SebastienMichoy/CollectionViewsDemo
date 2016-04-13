@@ -31,7 +31,8 @@ import UIKit
 @IBDesignable
 class ApplicationIconNameCollectionViewCell: UICollectionViewCell {
     
-    // MARK: - Properties
-    @IBOutlet weak var iconImageView: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
+    // MARK: Properties
+    
+    @IBOutlet var iconImageView: UIImageView!
+    @IBOutlet var nameLabel: UILabel!
 }

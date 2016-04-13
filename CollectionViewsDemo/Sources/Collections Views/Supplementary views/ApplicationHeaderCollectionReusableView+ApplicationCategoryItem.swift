@@ -30,8 +30,8 @@ import UIKit
 
 extension ApplicationHeaderCollectionReusableView {
     
-    // MARK: - Methods
     // MARK: Fill cell
+    
     func fillWithApplicationCategoryItem(applicationCategory: ApplicationCategoryItem) {
         self.titleLabel.text = applicationCategory.category.rawValue
     }

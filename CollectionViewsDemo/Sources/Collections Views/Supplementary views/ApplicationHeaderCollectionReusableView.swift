@@ -30,9 +30,11 @@ import UIKit
 
 class ApplicationHeaderCollectionReusableView: UICollectionReusableView {
     
-    // MARK: - Properties
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak private var titleLabelConstraintLeft: NSLayoutConstraint!
+    // MARK: Properties
+    
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet private var titleLabelConstraintLeft: NSLayoutConstraint!
+    
     var titleLabelLeftInset: CGFloat {
         get {
             return self.titleLabelConstraintLeft.constant

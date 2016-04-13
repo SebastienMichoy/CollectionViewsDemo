@@ -28,14 +28,15 @@
 
 import UIKit
 
-class Basic01CollectionViewController: UIViewController, UICollectionViewDataSource {
+class Basic01CollectionViewController: UIViewController {
 
-    // MARK: - Properties
-    @IBOutlet weak var collectionView: UICollectionView!
-    let applications: [ApplicationItem]
+    // MARK: Properties
     
-    // MARK: - Methods
-    // MARK: Init / deinit
+    let applications: [ApplicationItem]
+    @IBOutlet var collectionView: UICollectionView!
+    
+    // MARK: Initialization
+    
     required init?(coder aDecoder: NSCoder) {
         self.applications = ApplicationManager.applications()
         
@@ -43,10 +44,11 @@ class Basic01CollectionViewController: UIViewController, UICollectionViewDataSou
     }
     
     // MARK: View life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let spacesWidth = deviceType() == .Phone ? 2 : 10 as CGFloat
+        let spacesWidth = (deviceType() == .Phone) ? 2 : 10 as CGFloat
         
         let collectionViewFlowLayout = UICollectionViewFlowLayout()
         collectionViewFlowLayout.minimumLineSpacing = spacesWidth
@@ -56,8 +58,12 @@ class Basic01CollectionViewController: UIViewController, UICollectionViewDataSou
         
         self.collectionView.collectionViewLayout = collectionViewFlowLayout
     }
+}
+
+extension Basic01CollectionViewController: UICollectionViewDataSource {
     
     // MARK: UICollectionViewDataSource protocol
+    
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let application = self.applications[indexPath.row]
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ApplicationIconNameCollectionViewCell", forIndexPath: indexPath) as! ApplicationIconNameCollectionViewCell

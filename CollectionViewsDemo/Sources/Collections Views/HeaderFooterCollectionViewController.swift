@@ -28,14 +28,15 @@
 
 import UIKit
 
-class HeaderFooterCollectionViewController: UIViewController, UICollectionViewDataSource {
+class HeaderFooterCollectionViewController: UIViewController {
 
-    // MARK: - Properties
-    @IBOutlet weak var collectionView: UICollectionView!
-    let applicationsGroupedByCategory: [ApplicationCategoryItem]
+    // MARK: Properties
     
-    // MARK: - Methods
-    // MARK: Init / deinit
+    let applicationsGroupedByCategory: [ApplicationCategoryItem]
+    @IBOutlet var collectionView: UICollectionView!
+    
+    // MARK: Initialization
+    
     required init?(coder aDecoder: NSCoder) {
         self.applicationsGroupedByCategory = ApplicationManager.applicationsGroupedByCategories()
         
@@ -43,10 +44,11 @@ class HeaderFooterCollectionViewController: UIViewController, UICollectionViewDa
     }
     
     // MARK: View life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let spacesWidth = deviceType() == .Phone ? 2 : 10 as CGFloat
+        let spacesWidth = (deviceType() == .Phone) ? 2 : 10 as CGFloat
         
         let collectionViewFlowLayout = UICollectionViewFlowLayout()
         collectionViewFlowLayout.minimumLineSpacing = spacesWidth
@@ -58,8 +60,12 @@ class HeaderFooterCollectionViewController: UIViewController, UICollectionViewDa
         
         self.collectionView.collectionViewLayout = collectionViewFlowLayout
     }
-    
+}
+
+extension HeaderFooterCollectionViewController: UICollectionViewDataSource {
+
     // MARK: UICollectionViewDataSource protocol
+    
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let application = self.applicationsGroupedByCategory[indexPath.section].applications[indexPath.row]
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ApplicationIconNameCollectionViewCell", forIndexPath: indexPath) as! ApplicationIconNameCollectionViewCell
@@ -80,7 +86,7 @@ class HeaderFooterCollectionViewController: UIViewController, UICollectionViewDa
         if kind == UICollectionElementKindSectionHeader {
             let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "ApplicationHeaderCollectionReusableView", forIndexPath: indexPath) as! ApplicationHeaderCollectionReusableView
             header.fillWithApplicationCategoryItem(applicationCategory)
-            header.titleLabelLeftInset = deviceType() == .Phone ? 10 : 18
+            header.titleLabelLeftInset = (deviceType() == .Phone) ? 10 : 18
             supplementaryView = header
         } else {
             let footer = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "ApplicationFooterCollectionReusableView", forIndexPath: indexPath) as! ApplicationFooterCollectionReusableView

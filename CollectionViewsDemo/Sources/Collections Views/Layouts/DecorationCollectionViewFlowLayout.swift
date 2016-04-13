@@ -30,12 +30,13 @@ import UIKit
 
 class DecorationCollectionViewFlowLayout: UICollectionViewFlowLayout {
    
-    // MARK: - Properties
+    // MARK: Properties
+    
     var decorationAttributes: [NSIndexPath: UICollectionViewLayoutAttributes]
     var sectionsWidthOrHeight: [NSIndexPath: CGFloat]
     
-    // MARK: - Methods
-    // MARK: Init / deinit
+    // MARK: Initialization
+    
     override init() {
         self.decorationAttributes = [:]
         self.sectionsWidthOrHeight = [:]
@@ -55,6 +56,7 @@ class DecorationCollectionViewFlowLayout: UICollectionViewFlowLayout {
     }
     
     // MARK: Providing layout attributes
+    
     override func layoutAttributesForDecorationViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
         return self.decorationAttributes[indexPath]
     }
@@ -70,7 +72,7 @@ class DecorationCollectionViewFlowLayout: UICollectionViewFlowLayout {
             let decorationAttribute = UICollectionViewLayoutAttributes(forDecorationViewOfKind: ApplicationBackgroundCollectionReusableView.kind(), withIndexPath: indexPath)
             decorationAttribute.zIndex = -1
             
-            if (self.scrollDirection == .Vertical) {
+            if self.scrollDirection == .Vertical {
                 decorationAttribute.frame = CGRect(x: 0, y: xOrYOffset, width: self.collectionViewContentSize().width, height: sectionWidthOrHeight)
             } else {
                 decorationAttribute.frame = CGRect(x: xOrYOffset, y: 0, width: sectionWidthOrHeight, height: self.collectionViewContentSize().height)
@@ -88,11 +90,9 @@ class DecorationCollectionViewFlowLayout: UICollectionViewFlowLayout {
     override func prepareLayout() {
         super.prepareLayout()
         
-        if self.collectionView == nil {
-            return
-        }
+        guard self.collectionView != nil else { return }
         
-        if (self.scrollDirection == .Vertical) {
+        if self.scrollDirection == .Vertical {
             let collectionViewWidthAvailableForCells = self.collectionViewContentSize().width - self.sectionInset.left - self.sectionInset.right
             let numberMaxOfCellsPerRow = floorf(Float((collectionViewWidthAvailableForCells + self.minimumInteritemSpacing) / (self.itemSize.width + self.minimumInteritemSpacing)))
             let numberOfSections = self.collectionView!.numberOfSections()

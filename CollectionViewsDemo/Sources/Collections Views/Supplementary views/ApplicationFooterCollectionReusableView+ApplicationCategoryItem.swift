@@ -30,8 +30,8 @@ import UIKit
 
 extension ApplicationFooterCollectionReusableView {
     
-    // MARK: - Methods
     // MARK: Fill cell
+    
     func fillWithApplicationCategoryItem(applicationCategory: ApplicationCategoryItem) {
         if applicationCategory.applications.count <= 1 {
             self.titleLabel.text = "\(applicationCategory.applications.count) item"
