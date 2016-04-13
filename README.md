@@ -4,7 +4,12 @@
 ## Requirements
 - iOS 8.0+
 - ARC
-- Swift 1.2
+- Swift 2.2
+
+## Slides
+Some slides related to this demo:
+
+- [UICollectionView - Basics](http://bit.ly/UICollectionViewsBasics)
 
 ## Examples
 0. A basic collection view using a flow layout.
