@@ -48,7 +48,7 @@ class HeaderFooterCollectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let spacesWidth = (deviceType() == .Phone) ? 2 : 10 as CGFloat
+        let spacesWidth = (deviceType() == .phone) ? 2 : 10 as CGFloat
         
         let collectionViewFlowLayout = UICollectionViewFlowLayout()
         collectionViewFlowLayout.minimumLineSpacing = spacesWidth
@@ -65,39 +65,38 @@ class HeaderFooterCollectionViewController: UIViewController {
 extension HeaderFooterCollectionViewController: UICollectionViewDataSource {
 
     // MARK: UICollectionViewDataSource Protocol
-    
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let application = self.applicationsGroupedByCategory[indexPath.section].applications[indexPath.row]
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ApplicationIconNameCollectionViewCell", forIndexPath: indexPath) as! ApplicationIconNameCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ApplicationIconNameCollectionViewCell", for: indexPath) as! ApplicationIconNameCollectionViewCell
         
-        cell.fillWithApplicationItem(application)
+        cell.fillWithApplicationItem(application: application)
         
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.applicationsGroupedByCategory[section].applications.count
     }
     
-    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let applicationCategory = self.applicationsGroupedByCategory[indexPath.section]
         let supplementaryView: UICollectionReusableView
         
         if kind == UICollectionElementKindSectionHeader {
-            let header = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "ApplicationHeaderCollectionReusableView", forIndexPath: indexPath) as! ApplicationHeaderCollectionReusableView
-            header.fillWithApplicationCategoryItem(applicationCategory)
-            header.titleLabelLeftInset = (deviceType() == .Phone) ? 10 : 18
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ApplicationHeaderCollectionReusableView", for: indexPath) as! ApplicationHeaderCollectionReusableView
+            header.fillWithApplicationCategoryItem(applicationCategory: applicationCategory)
+            header.titleLabelLeftInset = (deviceType() == .phone) ? 10 : 18
             supplementaryView = header
         } else {
-            let footer = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "ApplicationFooterCollectionReusableView", forIndexPath: indexPath) as! ApplicationFooterCollectionReusableView
-            footer.fillWithApplicationCategoryItem(applicationCategory)
+            let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ApplicationFooterCollectionReusableView", for: indexPath) as! ApplicationFooterCollectionReusableView
+            footer.fillWithApplicationCategoryItem(applicationCategory: applicationCategory)
             supplementaryView = footer
         }
         
         return supplementaryView
     }
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return self.applicationsGroupedByCategory.count
     }
 }

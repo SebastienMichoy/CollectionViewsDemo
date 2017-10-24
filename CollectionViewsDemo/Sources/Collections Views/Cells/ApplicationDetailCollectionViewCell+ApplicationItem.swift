@@ -33,7 +33,7 @@ extension ApplicationDetailCollectionViewCell {
     // MARK: Class Method
     
     class func standardHeightForApplicationItem() -> CGFloat {
-        return (deviceType() == .Phone) ? 60 + 16 : 72 + 16 as CGFloat
+        return (deviceType() == .phone) ? 60 + 16 : 72 + 16 as CGFloat
     }
     
     // MARK: Fill Cell
@@ -43,9 +43,9 @@ extension ApplicationDetailCollectionViewCell {
         self.nameLabel.text = application.name
         self.authorLabel.text = application.authorName
         
-        if (deviceType() == .Phone) {
-            self.nameLabel.font = self.nameLabel.font.fontWithSize(10)
-            self.authorLabel.font = self.authorLabel.font.fontWithSize(10)
+        if (deviceType() == .phone) {
+            self.nameLabel.font = self.nameLabel.font.withSize(10)
+            self.authorLabel.font = self.authorLabel.font.withSize(10)
         }
     }
 }

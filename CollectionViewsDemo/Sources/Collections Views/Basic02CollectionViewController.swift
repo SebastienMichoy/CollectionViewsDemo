@@ -53,7 +53,7 @@ class Basic02CollectionViewController: UIViewController {
     
     // MARK: Rotation
     
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         let animation: (UIViewControllerTransitionCoordinatorContext!) -> Void = { context in
             self.collectionView.collectionViewLayout.invalidateLayout()
         }
@@ -61,9 +61,9 @@ class Basic02CollectionViewController: UIViewController {
         let completion: (UIViewControllerTransitionCoordinatorContext!) -> Void = {context in
         }
         
-        coordinator.animateAlongsideTransition(animation, completion: completion)
+        coordinator.animate(alongsideTransition: animation, completion: completion)
         
-        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+        super.viewWillTransition(to: size, with: coordinator)
     }
 }
 
@@ -71,28 +71,28 @@ extension Basic02CollectionViewController: UICollectionViewDataSource {
     
     // MARK: UICollectionViewDataSource Protocol
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let application = self.applicationsGroupedByCategory[indexPath.section].applications[indexPath.row]
         let cell: UICollectionViewCell
         
         if indexPath.section % 2 == 0 {
-            let cellIcon = collectionView.dequeueReusableCellWithReuseIdentifier("ApplicationIconNameCollectionViewCell", forIndexPath: indexPath) as! ApplicationIconNameCollectionViewCell
-            cellIcon.fillWithApplicationItem(application)
+            let cellIcon = collectionView.dequeueReusableCell(withReuseIdentifier: "ApplicationIconNameCollectionViewCell", for: indexPath) as! ApplicationIconNameCollectionViewCell
+            cellIcon.fillWithApplicationItem(application: application)
             cell = cellIcon
         } else {
-            let cellDetail = collectionView.dequeueReusableCellWithReuseIdentifier("ApplicationDetailCollectionViewCell", forIndexPath: indexPath) as! ApplicationDetailCollectionViewCell
-            cellDetail.fillWithApplicationItem(application)
+            let cellDetail = collectionView.dequeueReusableCell(withReuseIdentifier: "ApplicationDetailCollectionViewCell", for: indexPath) as! ApplicationDetailCollectionViewCell
+            cellDetail.fillWithApplicationItem(application: application)
             cell = cellDetail
         }
         
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.applicationsGroupedByCategory[section].applications.count
     }
-    
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return self.applicationsGroupedByCategory.count
     }
 }
@@ -101,35 +101,35 @@ extension Basic02CollectionViewController: UICollectionViewDelegateFlowLayout {
     
     // MARK: UICollectionViewDelegateFlowLayout Protocol
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        let spacesWidth = (deviceType() == .Phone) ? 2 : 10 as CGFloat
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        let spacesWidth = (deviceType() == .phone) ? 2 : 10 as CGFloat
         let inset = UIEdgeInsets(top: 10, left: spacesWidth, bottom: 5, right: spacesWidth)
         
         return inset
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-        let spacesWidth = (deviceType() == .Phone) ? 2 : 10 as CGFloat
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        let spacesWidth = (deviceType() == .phone) ? 2 : 10 as CGFloat
         
         return spacesWidth
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        let spacesWidth = (deviceType() == .Phone) ? 2 : 10 as CGFloat
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        let spacesWidth = (deviceType() == .phone) ? 2 : 10 as CGFloat
         
         return spacesWidth
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellSize: CGSize
         
         if indexPath.section % 2 == 0 {
             cellSize = ApplicationIconNameCollectionViewCell.standardSizeForApplicationItem()
         } else {
-            let inset = self.collectionView(collectionView, layout: collectionViewLayout, insetForSectionAtIndex: indexPath.section)
-            let minimumInteritemSpacing = self.collectionView(collectionView, layout: collectionViewLayout, minimumInteritemSpacingForSectionAtIndex: indexPath.section)
+            let inset = self.collectionView(collectionView, layout: collectionViewLayout, insetForSectionAt: indexPath.section)
+            let minimumInteritemSpacing = self.collectionView(collectionView, layout: collectionViewLayout, minimumInteritemSpacingForSectionAt: indexPath.section)
             let cellHeight = ApplicationDetailCollectionViewCell.standardHeightForApplicationItem()
-            let cellWidth = (CGRectGetWidth(collectionView.frame) - minimumInteritemSpacing - inset.left - inset.right) / 2
+            let cellWidth = (collectionView.frame.width - minimumInteritemSpacing - inset.left - inset.right) / 2
             
             cellSize = CGSize(width: cellWidth, height: cellHeight)
         }

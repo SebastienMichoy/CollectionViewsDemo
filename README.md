@@ -4,7 +4,7 @@
 ## Requirements
 - iOS 8.0+
 - ARC
-- Swift 2.2
+- Swift 4
 
 ## Slides
 Some slides related to this demo:

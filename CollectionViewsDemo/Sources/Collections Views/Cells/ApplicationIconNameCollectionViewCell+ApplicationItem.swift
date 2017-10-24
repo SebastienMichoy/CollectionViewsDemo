@@ -35,7 +35,7 @@ extension ApplicationIconNameCollectionViewCell {
     class func standardSizeForApplicationItem() -> CGSize {
         let cellSize: CGSize
         
-        if deviceType() == .Phone {
+        if deviceType() == .phone {
             cellSize = CGSize(width: 60 + 16, height: 60 + 25)
         } else {
             cellSize = CGSize(width: 72 + 16, height: 72 + 25)
@@ -50,8 +50,8 @@ extension ApplicationIconNameCollectionViewCell {
         self.iconImageView.image = UIImage(named: application.imageName)
         self.nameLabel.text = application.bundleName
         
-        if deviceType() == .Phone {
-            self.nameLabel.font = self.nameLabel.font.fontWithSize(10)
+        if deviceType() == .phone {
+            self.nameLabel.font = self.nameLabel.font.withSize(10)
         }
     }
 }

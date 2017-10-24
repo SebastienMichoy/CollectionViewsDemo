@@ -48,7 +48,7 @@ class Basic01CollectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let spacesWidth = (deviceType() == .Phone) ? 2 : 10 as CGFloat
+        let spacesWidth = (deviceType() == .phone) ? 2 : 10 as CGFloat
         
         let collectionViewFlowLayout = UICollectionViewFlowLayout()
         collectionViewFlowLayout.minimumLineSpacing = spacesWidth
@@ -64,16 +64,16 @@ extension Basic01CollectionViewController: UICollectionViewDataSource {
     
     // MARK: UICollectionViewDataSource Protocol
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let application = self.applications[indexPath.row]
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ApplicationIconNameCollectionViewCell", forIndexPath: indexPath) as! ApplicationIconNameCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ApplicationIconNameCollectionViewCell", for: indexPath) as! ApplicationIconNameCollectionViewCell
 
-        cell.fillWithApplicationItem(application)
+        cell.fillWithApplicationItem(application: application)
         
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.applications.count
     }
     

@@ -53,6 +53,6 @@ class ApplicationBackgroundCollectionReusableView: UICollectionReusableView {
     // MARK: Setup
     
     func setup() {
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clear
     }
 }

@@ -39,7 +39,7 @@ enum DeviceModel {
 }
 
 func deviceOrientation() -> UIDeviceOrientation {
-    return UIDevice.currentDevice().orientation
+    return UIDevice.current.orientation
 }
 
 func deviceModel() -> DeviceModel {
@@ -47,13 +47,12 @@ func deviceModel() -> DeviceModel {
     uname(&systemInfo)
     
     let machine = systemInfo.machine
-    let mirror = Mirror(reflecting: machine) //reflect(machine)
+    let mirror = Mirror(reflecting: machine)
     var modelId = ""
     
-    for child in mirror.children {
-        if let value = child.value as? Int8 where value != 0 {
-            modelId.append(UnicodeScalar(UInt8(value)))
-        }
+    for child in mirror.children where child.value is Int8 && (child.value as! Int8) != 0 {
+        let value = child.value as! Int8
+        modelId.append(String(UnicodeScalar(UInt8(value))))
     }
     
     let deviceModel: DeviceModel
@@ -101,5 +100,5 @@ func deviceModel() -> DeviceModel {
 }
 
 func deviceType() -> UIUserInterfaceIdiom {
-    return UIDevice.currentDevice().userInterfaceIdiom
+    return UIDevice.current.userInterfaceIdiom
 }

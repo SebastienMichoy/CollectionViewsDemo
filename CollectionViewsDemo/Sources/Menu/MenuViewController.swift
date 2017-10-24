@@ -33,7 +33,7 @@ class MenuViewController: UIViewController {
     // MARK: Properties
     
     private var collapseDetailViewController: Bool
-    private var lastIndexPathSelected: NSIndexPath
+    private var lastIndexPathSelected: IndexPath
     private let menuItems: [MenuItem]
     @IBOutlet private var tableView: UITableView!
     
@@ -41,24 +41,24 @@ class MenuViewController: UIViewController {
     
     required init?(coder aDecoder: NSCoder) {
         self.collapseDetailViewController = true
-        self.lastIndexPathSelected = NSIndexPath(forRow: 0, inSection: 0)
+        self.lastIndexPathSelected = IndexPath(row: 0, section: 0)
         self.menuItems = MenuManager.menuItemsList()
         
         super.init(coder: aDecoder)
     }
     
     // MARK: View Life Cycle
-    
-    override func viewDidAppear(animated: Bool) {
+
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        if deviceType() == .Pad || (deviceModel() == .iPhone6Plus && (deviceOrientation() == .LandscapeLeft || deviceOrientation() == .LandscapeRight))  {
-            self.tableView.selectRowAtIndexPath(self.lastIndexPathSelected, animated: false, scrollPosition: .Top)
+
+        if deviceType() == .pad || (deviceModel() == .iPhone6Plus && (deviceOrientation() == .landscapeLeft || deviceOrientation() == .landscapeRight))  {
+            self.tableView.selectRow(at: self.lastIndexPathSelected, animated: false, scrollPosition: .top)
         } else {
-            self.tableView.deselectRowAtIndexPath(self.lastIndexPathSelected, animated: true)
+            self.tableView.deselectRow(at: self.lastIndexPathSelected, animated: true)
         }
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -66,20 +66,20 @@ class MenuViewController: UIViewController {
     }
     
     // MARK: Rotation
-    
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         let animation: (UIViewControllerTransitionCoordinatorContext!) -> Void = { context in
-            if deviceModel() == .iPhone6Plus && (deviceOrientation() == .LandscapeLeft || deviceOrientation() == .LandscapeRight) {
-                self.tableView.selectRowAtIndexPath(self.lastIndexPathSelected, animated: false, scrollPosition: .Top)
+            if deviceModel() == .iPhone6Plus && (deviceOrientation() == .landscapeLeft || deviceOrientation() == .landscapeRight) {
+                self.tableView.selectRow(at: self.lastIndexPathSelected, animated: false, scrollPosition: .top)
             }
         }
-        
+
         let completion: (UIViewControllerTransitionCoordinatorContext!) -> Void = { context in
         }
-        
-        coordinator.animateAlongsideTransition(animation, completion: completion)
-        
-        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+
+        coordinator.animate(alongsideTransition: animation, completion: completion)
+
+        super.viewWillTransition(to: size, with: coordinator)
     }
 }
 
@@ -96,22 +96,22 @@ extension MenuViewController: UITableViewDataSource {
 
     // MARK: UITableViewDataSource Protocol
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let menuItem = self.menuItems[indexPath.row]
         
         cell.textLabel?.text = menuItem.title
         cell.detailTextLabel?.text = menuItem.subtitle
-        cell.selectionStyle = .Default
+        cell.selectionStyle = .default
         
-        if deviceType() == .Phone {
-            cell.accessoryType = .DisclosureIndicator
+        if deviceType() == .phone {
+            cell.accessoryType = .disclosureIndicator
         }
         
         return cell
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.menuItems.count
     }
 }
@@ -120,10 +120,10 @@ extension MenuViewController: UITableViewDelegate {
 
     // MARK: UITableViewDelegate Protocol
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let menuItem = self.menuItems[indexPath.row]
         let storyboard = UIStoryboard(name: "CollectionViewsDemo", bundle: nil)
-        let viewController = storyboard.instantiateViewControllerWithIdentifier(menuItem.storyboardId) 
+        let viewController = storyboard.instantiateViewController(withIdentifier: menuItem.storyboardId)
         let navigationController = UINavigationController(rootViewController: viewController)
         
         if let splitViewController = self.splitViewController {
@@ -131,7 +131,7 @@ extension MenuViewController: UITableViewDelegate {
             self.lastIndexPathSelected = indexPath
             
             viewController.title = menuItem.title
-            viewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
+            viewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
             viewController.navigationItem.leftItemsSupplementBackButton = true
             
             splitViewController.showDetailViewController(navigationController, sender: self)

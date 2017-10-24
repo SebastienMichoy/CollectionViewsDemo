@@ -37,10 +37,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: Methods
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        if let splitViewController = self.window?.rootViewController as? UISplitViewController where splitViewController.viewControllers.count >= 2,
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+        if let splitViewController = self.window?.rootViewController as? UISplitViewController, splitViewController.viewControllers.count >= 2,
             let navigationController = splitViewController.viewControllers[1] as? UINavigationController {
-            navigationController.topViewController?.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem()
+            navigationController.topViewController?.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
             navigationController.topViewController?.navigationItem.leftItemsSupplementBackButton = true
         }
                 
